@@ -1,0 +1,85 @@
+
+@mixin completedButton {
+    border-color: $completedColor;
+    &::after {
+        content: "✓";
+        color: $completedColor;
+    }
+}
+
+.items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2em;
+    color: #666;
+
+    li {
+        padding: 0.5em;
+        border-bottom: 1px solid $innerBorderColor;
+
+        &:hover .delete {
+            display: block;
+        }
+    }
+
+    p {
+        display: inline;
+        padding-left: 1em;
+    }
+
+    input {
+        display: none;
+    }
+
+    .delete {
+        display: none;
+        float: right;
+        background: none;
+        border: none;
+        color: $deleteColor;
+    }
+
+    .completed {
+        color: #999;
+
+        button.check {
+            @include completedButton;
+        }
+
+        p {
+            text-decoration: line-through;
+        }
+    }
+
+    button.check {
+        border: 1px solid $innerBorderColor;
+        border-radius: 50%;
+        width: 1.5em;
+        height: 1.5em;
+        background: none;
+        outline: none;
+
+        &:hover {
+            @include completedButton;
+        }
+    }
+
+    .editing {
+        p {
+            display: none;
+        }
+        input {
+            display: inline;
+            width: 100%;
+            outline: none;
+            padding: 0.4em 1em;
+            box-sizing: border-box;
+            box-shadow: inset 1px 0px 15px #eee;
+            border-width: 1px;
+        }
+        button {
+            display: none !important;
+        }
+    }
+}

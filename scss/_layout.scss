@@ -1,0 +1,33 @@
+
+body {
+    background-color: $backgroundColor;
+    font-family: $primaryFont;
+}
+
+h1 {
+    font-size: 4em;
+    color: $titleTextColor;
+    font-weight: normal;
+    text-align: center;
+}
+
+main {
+    width: 45%;
+    margin: 2em auto 0 auto;
+    box-shadow: 0px 9px 17px #ccc;
+    margin-bottom: 5em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+@media screen and (max-width: 30em) {
+    main {
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 30.1em) and (max-width: 50em) {
+    main {
+        width: 70%;
+    }
+}

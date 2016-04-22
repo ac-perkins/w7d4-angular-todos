@@ -1,0 +1,16 @@
+
+.new-todo {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1em 2em;
+    border: none;
+    border-bottom: 2px solid $innerBorderColor;
+    outline: none;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+::-moz-input-placeholder {
+    font-style: italic;
+}

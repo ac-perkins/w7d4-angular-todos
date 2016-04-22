@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app='todos-angular' lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>TODO List</title>
+
+        <meta name='description' content='A simple app to track TODO items'>
+        <meta name='author' content=''>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,400,400italic' rel='stylesheet' type='text/css'>
+        <link rel='stylesheet' type='text/css' href='stylesheets/main.css'>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/controllers/todos.js"></script>
+        <script src="js/factories/todos.js"></script>
+
+    </head>
+    <body>
+
+        <header>
+            <h1>todos</h1>
+        </header>
+
+        <main ng-controller="TodosController as tc">
+            <form name='todoForm' novalidate ng-submit='tc.addNewTodo(todoForm)'>
+                <input type='text' ng-model="tc.newTodo.todo" ng-model-options="{updateOn: 'submit'}" required class='new-todo' placeholder='What needs to be done?'>
+            </form>
+
+            <ul class='items'>
+              <li ng-repeat='todo in tc.allTodos | filter: tc.filter'>
+                <article ng-class="{ completed: todo.completed, editing: todo.editing }">
+                  <button class='check' ng-click='todo.completed = !todo.completed'></button>
+                  <p ng-click='todo.editing = !todo.editing'>{{ todo.todo }}</p>
+                  <input ng-model='todo.todo' ng-keydown="tc.doneEditing($event, todo)" type='text' class='edit-todo'>
+                  <button class='delete' ng-click='tc.deleteTodo($index)'>X</button>
+                </article>
+              </li>
+                <!-- example of existing item (incomplete)
+                <li>
+                    <article>
+                        <button class='check'></button>
+                        <p>learn html</p>
+                        <input type='text' class='edit-todo' value='learn html'>
+                        <button class='delete'>X</button>
+                    </article>
+                </li>
+                -->
+                <!-- example of completed item
+                <li>
+                    <article class='completed'>
+                        <button class='check'></button>
+                        <p class='complete'>learn css</p>
+                        <input type='text' class='edit-todo' value='learn css'>
+                        <button class='delete'>X</button>
+                    </article>
+                </li>
+                -->
+                <!-- example of item currently being edited
+                <li>
+                    <article class='editing'>
+                        <button class='check'></button>
+                        <p>learn javascript</p>
+                        <input type='text' class='edit-todo' value='learn javascript'>
+                        <button class='delete'>X</button>
+                    </article>
+                </li>
+                -->
+            </ul>
+
+            <footer>
+                <p class='remaining'><span class='incomplete-items'>{{ tc.itemsLeft() }}</span> items left</p>
+                <nav>
+                    <ul>
+                        <li><button class='show-all' ng-class="{active: tc.allActive}" ng-click='tc.showAll()'>All</button></li>
+                        <li><button class='show-active' ng-class="{active: tc.activeActive}" ng-click='tc.showActive()'>Active</button></li>
+                        <li><button class='show-completed' ng-class="{active: tc.completedActive}" ng-click='tc.showCompleted()'>Completed</button></li>
+                    </ul>
+                </nav>
+                <button class='clear' ng-click='tc.clearCompleted()'>Clear completed</button>
+            </footer>
+        </main>
+
+    </body>
+</html>
