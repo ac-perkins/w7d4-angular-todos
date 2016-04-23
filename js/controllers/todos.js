@@ -27,6 +27,10 @@
         todosFactory.edit(this.allTodos);
       };
 
+      this.completedTodo = function completedTodo() {
+        todosFactory.edit(this.allTodos);
+      };
+
       this.doneEditing = function doneEditing( event, todo ) {
         console.log(todo);
         if (event.keyCode === 13 || event.keyCode === 27) {
@@ -45,7 +49,7 @@
 
       this.itemsLeft = function itemsLeft() {
         var itemsLeftCount = 0;
-        this.allTodos.forEach(function (element) {
+        this.allTodos.forEach(function loopTodos(element) {
           if (!element.completed) {
             itemsLeftCount++;
           }
@@ -59,7 +63,6 @@
 
 
       this.showAll = function showAll() {
-
 
         this.allActive = true;
         console.log(this.allActive);
@@ -89,11 +92,12 @@
       var that = this;
 
       this.clearCompleted = function clearCompleted() {
-        this.allTodos.forEach(function (element, i) {
+        this.allTodos.forEach(function loopTodos(element, i) {
           if (element.completed) {
             that.allTodos.splice(i, 1);
           }
         });
+        todosFactory.edit(this.allTodos);
       };
 
     }

@@ -31,42 +31,12 @@
             <ul class='items'>
               <li ng-repeat='todo in tc.allTodos | filter: tc.filter'>
                 <article ng-class="{ completed: todo.completed, editing: todo.editing }">
-                  <button class='check' ng-click='todo.completed = !todo.completed'></button>
+                  <button class='check' ng-click='todo.completed = !todo.completed; tc.completedTodo()'></button>
                   <p ng-click='todo.editing = !todo.editing'>{{ todo.todo }}</p>
                   <input ng-model='todo.todo' ng-keydown="tc.doneEditing($event, todo)" type='text' class='edit-todo'>
                   <button class='delete' ng-click='tc.deleteTodo($index)'>X</button>
                 </article>
               </li>
-                <!-- example of existing item (incomplete)
-                <li>
-                    <article>
-                        <button class='check'></button>
-                        <p>learn html</p>
-                        <input type='text' class='edit-todo' value='learn html'>
-                        <button class='delete'>X</button>
-                    </article>
-                </li>
-                -->
-                <!-- example of completed item
-                <li>
-                    <article class='completed'>
-                        <button class='check'></button>
-                        <p class='complete'>learn css</p>
-                        <input type='text' class='edit-todo' value='learn css'>
-                        <button class='delete'>X</button>
-                    </article>
-                </li>
-                -->
-                <!-- example of item currently being edited
-                <li>
-                    <article class='editing'>
-                        <button class='check'></button>
-                        <p>learn javascript</p>
-                        <input type='text' class='edit-todo' value='learn javascript'>
-                        <button class='delete'>X</button>
-                    </article>
-                </li>
-                -->
             </ul>
 
             <footer>
