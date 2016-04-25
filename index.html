@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app='todos-angular' lang='en'>
     <head>
+
         <meta charset='utf-8'>
         <title>TODO List</title>
 
@@ -24,7 +25,8 @@
         </header>
 
         <main ng-controller="TodosController as tc">
-            <form name='todoForm' novalidate ng-submit='tc.addNewTodo(todoForm)'>
+
+            <form name='todoForm' ng-submit='tc.addNewTodo(todoForm)'>
                 <input type='text' ng-model="tc.newTodo.todo" ng-model-options="{updateOn: 'submit'}" required class='new-todo' placeholder='What needs to be done?'>
             </form>
 
@@ -48,8 +50,9 @@
                         <li><button class='show-completed' ng-class="{active: tc.completedActive}" ng-click='tc.showCompleted()'>Completed</button></li>
                     </ul>
                 </nav>
-                <button class='clear' ng-click='tc.clearCompleted()'>Clear completed</button>
+                <button class='clear' ng-click='tc.clearCompleted(tc.allTodos)'>Clear completed</button>
             </footer>
+
         </main>
 
     </body>

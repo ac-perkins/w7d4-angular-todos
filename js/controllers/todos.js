@@ -27,9 +27,8 @@
         }
       };
 
-
       /**
-       * Updates localStorage when completed button is clicked in the UI
+       * Updates localStorage when completed button is clicked in the UI.
        */
       this.completedTodo = function completedTodo() {
         todosFactory.edit(this.allTodos);
@@ -37,7 +36,7 @@
 
       /**
        * Sets a todo's editing value to false when the enter or escape keys are
-       * hit while editing the todo
+       * hit while editing the todo.
        * @param  {object} event   The current keyboard key being pressed
        * @param  {object} todo    The todo object that is being edited
        */
@@ -59,7 +58,7 @@
 
       /**
        * Implements a counter that increments based on a todo's completed status
-       * and then returns that number to display the number of incomplete todos
+       * and then returns that number to display the number of incomplete todos.
        * @return {number}   Number of incomplete todos
        */
       this.itemsLeft = function itemsLeft() {
@@ -112,19 +111,18 @@
         this.activeActive = false;
       };
 
-      var that = this;
-
       /**
-       * Removes all todo objects in the allTodos array that have their completed
+       * Removes all todo objects in the array that have their completed
        * key set to true and then updates localStorage with the resulting array.
+       * @param  {array} todos  Array of todo objects
        */
-      this.clearCompleted = function clearCompleted() {
-        this.allTodos.forEach(function loopTodos(element, i) {
-          if (element.completed) {
-            that.allTodos.splice(i, 1);
+      this.clearCompleted = function clearCompleted(todos) {
+        for (var i = todos.length - 1; i >= 0; i -= 1) {
+          if (todos[i].completed) {
+            todos.splice(i, 1);
           }
-        });
-        todosFactory.edit(this.allTodos);
+        }
+        todosFactory.edit(todos);
       };
 
     }
